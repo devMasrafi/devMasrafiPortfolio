@@ -1,5 +1,5 @@
-import CardOne from "../components/cards/CardOne";
-import Button from "../components/btn/Button";
+import CardOne from "../../components/cards/CardOne";
+import Button from "../../components/btn/Button";
 import { useEffect, useState } from "react";
 
 const TodoApp = () => {
@@ -111,9 +111,24 @@ const TodoApp = () => {
       {/* list for todo */}
       <div>
         <div className="flex justify-between mb-2">
-          <Button className={`bg-green text-white`} onClick={() => setFilter("all")}>all</Button>
-          <Button className={`bg-green text-white`} onClick={()=> setFilter('active')}>active</Button>
-          <Button className={`bg-green text-white`} onClick={()=> setFilter('completed')} >completed</Button>
+          <Button
+            className={`bg-green text-white`}
+            onClick={() => setFilter("all")}
+          >
+            all
+          </Button>
+          <Button
+            className={`bg-green text-white`}
+            onClick={() => setFilter("active")}
+          >
+            active
+          </Button>
+          <Button
+            className={`bg-green text-white`}
+            onClick={() => setFilter("completed")}
+          >
+            completed
+          </Button>
         </div>
         <div className="h-135 overflow-y-auto overflow-x-hidden scrollbar-hide">
           {todoList.length === 0 ? (
