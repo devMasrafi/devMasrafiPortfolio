@@ -1,8 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router";
 import Button from "../../components/btn/Button";
+import { IoMdAdd } from "react-icons/io";
+import { FiMinus } from "react-icons/fi";
 
 const Home = () => {
+  const [openQuestionIndex, setOpenQuestionIndex] = useState(null);
+
+  const qnaData = [
+    {
+      question: "Who are you?",
+      answer:
+        "I'm a web developer focused on building responsive and interactive web apps using React Nextjs MeterialUi, mondobd, express ",
+    },
+    {
+      question: "What framework or library used",
+      answer:
+        "This site is made using reactjs and react router for multipage work. for styling used TailwindCSS might use other UI library if its too much to handle with pure react or JavaScript alone.",
+    },
+    {
+      question: "Website Ui design",
+      answer:
+        "This UI is made by Masrafi Mondol (devMasrafi) every compoent and details design is made by him.",
+    },
+    {
+      question: "What tech stack do you work with?",
+      answer:
+        "HTML, CSS, JavaScript, React, NextJS, tailwindCSS, ScSS, Node.js, MaterialUI,  REST APIs",
+    },
+    {
+      question: "How do you approach building a project?",
+      answer:
+        "planing, Ui design, coding, testing, making adjustment, deployment",
+    },
+  ];
+
+  const toggleQuestion = (index) => {
+    if (openQuestionIndex === index) {
+      setOpenQuestionIndex(null);
+    } else {
+      setOpenQuestionIndex(index);
+    }
+  };
+
   return (
     <main className="w-7xl mx-auto">
       {/* hero banner */}
@@ -37,7 +77,35 @@ const Home = () => {
           </div>
         </div>
       </div>
+
       {/* question and answers. */}
+      <div className="p-20 border-x">
+        <h2 className="text-2xl capitalize my-4 font-semibold">
+          Web Question and Answers
+        </h2>
+        <div>
+          {qnaData.map((item, index) => (
+            <div key={index} className="py-2">
+              <div className="flex items-center text-xl">
+                {openQuestionIndex === index ? <FiMinus /> : <IoMdAdd />}
+                <h2
+                  // question and click
+                  className="cursor-pointer pl-2"
+                  onClick={() => toggleQuestion(index)}
+                >
+                  {item.question}{" "}
+                </h2>
+              </div>
+              {/* answer */}
+              {openQuestionIndex === index && (
+                <p className="text-lg italic px-2 py-1 bg-black/20 rounded-xl mt-2">
+                  {item.answer}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
     </main>
   );
 };
