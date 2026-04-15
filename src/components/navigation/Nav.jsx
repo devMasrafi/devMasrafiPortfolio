@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 const Nav = () => {
   return (
-    <main className="flex justify-between items-center">
+    <main className="flex justify-between items-center border p-2 w-7xl mx-auto">
       <div>
         <NavLink to="/">
           <h1 className="text-3xl font-bold tracking-wider italic">
@@ -10,26 +10,18 @@ const Nav = () => {
           </h1>
         </NavLink>
       </div>
-      <div className="list-none flex w-[40%] justify-around  ">
+      <div className="list-none flex w-[30%] justify-around text-xl capitalize font-medium">
         <NavLink to="/">
-          <li className="text-2xl capitalize font-semibold tracking-wider ">
-            home
-          </li>
+          <li>home</li>
         </NavLink>
         <NavLink to="/projects">
-          <li className="text-2xl capitalize font-semibold tracking-wider ">
-            projects
-          </li>
+          <li>projects</li>
         </NavLink>
         <NavLink to="/about">
-          <li className="text-2xl capitalize font-semibold tracking-wider ">
-            about
-          </li>
+          <li>about</li>
         </NavLink>
         <NavLink to="/contact">
-          <li className="text-2xl capitalize font-semibold tracking-wider ">
-            conatct
-          </li>
+          <li>conatct</li>
         </NavLink>
         {/* <NavLink to="/">Home</NavLink> */}
       </div>
