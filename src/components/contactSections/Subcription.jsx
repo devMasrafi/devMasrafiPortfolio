@@ -40,7 +40,8 @@ const Subcription = () => {
       <div className="w-80">
         <h2 className="text-2xl capitalize font-semibold"> leave a mail </h2>
         <p>
-          Want us to contact you for more or for a meeting?! leave a mail to get notified
+          Want us to contact you for more or for a meeting?! leave a mail to get
+          notified
         </p>
       </div>
 
@@ -59,7 +60,7 @@ const Subcription = () => {
             <Button
               //   type="submit"
               onClick={handleClick}
-              className={` bg-black text-white rounded-none rounded-r-xl hover:scale-120 transition duration-150 ease-in-out `}
+              className={` bg-black text-white dark:bg-white dark:text-black rounded-none rounded-r-xl hover:scale-120 transition duration-150 ease-in-out `}
             >
               send
             </Button>
@@ -74,7 +75,7 @@ const Subcription = () => {
             />
             <label
               htmlFor="consent"
-              className={`pl-2 cursor-pointer ${error ? `text-red` : `text-black`}`}
+              className={`pl-2 cursor-pointer dark:text-white ${error ? `text-red` : `text-black`}`}
             >
               i wish to recive mail or get contacted
             </label>

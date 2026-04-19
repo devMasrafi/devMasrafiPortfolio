@@ -1,8 +1,9 @@
 import { NavLink } from "react-router";
+import ThemeToggle from "../themes/ThemeToggle";
 
 const Nav = () => {
   return (
-    <main className="flex justify-between items-center border p-2 w-7xl mx-auto">
+    <main className="flex justify-between items-center border p-2 w-7xl mx-auto sticky top-0 bg-white dark:bg-black">
       <div>
         <NavLink to="/">
           <h1 className="text-3xl font-bold tracking-wider italic">
@@ -23,6 +24,9 @@ const Nav = () => {
         <NavLink to="/contact">
           <li>conatct</li>
         </NavLink>
+
+        {/* theme BTn */}
+        <ThemeToggle className={`border cursor-pointer px-3 py-1 rounded-2xl`} />
         {/* <NavLink to="/">Home</NavLink> */}
       </div>
     </main>
