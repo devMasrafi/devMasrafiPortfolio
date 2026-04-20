@@ -79,7 +79,7 @@ const TodoApp = () => {
       <div>
         {/* form */}
         <form onSubmit={todoSubmit} className="w-100">
-          <div className="flex flex-col ">
+          <div className="flex flex-col placeholder:text-dark placeholder:dark:text-white ">
             <label
               htmlFor="todoTitle"
               className="text-lg pb-3 capitalize font-medium tracking-wider"
@@ -103,7 +103,7 @@ const TodoApp = () => {
             />
           </div>
           <div>
-            <Button className={`text-white bg-dark-green`}>submit</Button>
+            <Button className={`dark:text-white outline-1`}>submit</Button>
           </div>
         </form>
       </div>
@@ -112,37 +112,41 @@ const TodoApp = () => {
       <div>
         <div className="flex justify-between mb-2">
           <Button
-            className={`bg-green text-white`}
+            className={`bg-green dark:text-white border`}
             onClick={() => setFilter("all")}
           >
             all
           </Button>
           <Button
-            className={`bg-green text-white`}
+            className={`bg-green dark:text-white border`}
             onClick={() => setFilter("active")}
           >
             active
           </Button>
           <Button
-            className={`bg-green text-white`}
+            className={`bg-green dark:text-white border`}
             onClick={() => setFilter("completed")}
           >
             completed
           </Button>
         </div>
-        <div className="h-135 overflow-y-auto overflow-x-hidden scrollbar-hide">
+        <div className="h-135 mt-5 overflow-y-auto overflow-x-hidden scrollbar-hide">
           {todoList.length === 0 ? (
-            <CardOne />
+            <div className="border rounded-2xl">
+              <CardOne />
+            </div>
           ) : (
             filteredTodos.map((todo) => (
-              <CardOne
-                key={todo.id}
-                todoTitle={todo.todoTitle}
-                todoDetails={todo.todoDetails}
-                isCompleted={todo.isCompleted}
-                buttonOneClick={() => completedTodo(todo.id)}
-                buttonTwoClick={() => deleteTodo(todo.id)}
-              />
+              <div>
+                <CardOne
+                  key={todo.id}
+                  todoTitle={todo.todoTitle}
+                  todoDetails={todo.todoDetails}
+                  isCompleted={todo.isCompleted}
+                  buttonOneClick={() => completedTodo(todo.id)}
+                  buttonTwoClick={() => deleteTodo(todo.id)}
+                />
+              </div>
             ))
           )}
         </div>

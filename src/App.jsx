@@ -5,6 +5,8 @@ import About from "./pages/webPages/About";
 import Contact from "./pages/webPages/Contact";
 import Layout from "./components/navigation/Layout";
 import Projects from "./pages/webPages/Projects";
+import TodoApp from "./pages/projectPages/TodoApp";
+import ApiDataPage from "./pages/projectPages/ApiDataPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/todoApp",
+        element: <TodoApp />,
+      },
+      {
+        path: "/apiData",
+        element: <ApiDataPage />,
       },
     ],
   },

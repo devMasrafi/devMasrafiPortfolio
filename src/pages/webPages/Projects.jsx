@@ -1,9 +1,55 @@
-import React from 'react'
+import React from "react";
+import ProjectCard from "../../components/cards/ProjectCard";
 
 const Projects = () => {
-  return (
-    <div>Projects</div>
-  )
-}
+  const projectData = [
+    {
+      title: "Todo App with react js and taiwnd",
+      para: "made with react js and TailwindCSS instant dom and CRUD system build in. local storage set so that it will not be lost. and filter system.",
+      projectLink: "/todoApp",
+    },
+    {
+      title: "fetching APIdata from JsonPlace holder",
+      para: "made with react js and TailwindCSS, getting data and setting up all of the jundamental work so its easy to view and manage it after",
+      projectLink: "/apiData",
+    },
+  ];
 
-export default Projects
+  return (
+    <main className="w-7xl mx-auto">
+      <div className="border-x ">
+        {/* project page hero */}
+        {/* this is for information */}
+        <div className="py-20 border-b">
+          <div className="w-100 mx-auto">
+            <h2 className="text-4xl capitalize font-semibold">
+              projects that have been worked on
+            </h2>
+            <p className="text-lg my-3 tracking-wider italic opacity-60">
+              Every project in this web/site is made my Masrafi Mondol
+              (devMasrafi). On click it will take you to the project so you can
+              check it and interact with it.
+            </p>
+          </div>
+        </div>
+
+        {/* projects */}
+        <div className="py-10 flex justify-center items-center px-20 gap-20 ">
+          {projectData.map((item, index) => {
+            return (
+              <div key={index}>
+                <ProjectCard
+                  title={item.title}
+                  para={item.para}
+                  link={item.projectLink}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Projects;

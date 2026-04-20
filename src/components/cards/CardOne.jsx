@@ -8,7 +8,7 @@ const CardOne = ({
   isCompleted,
 }) => {
   return (
-    <div className="bg-milk-white w-120 px-5 py-4 rounded-2xl text-black mt-4 ">
+    <div className="bg-milk-white w-120 px-5 py-4 rounded-2xl text-black dark:text-white mt-4 ">
       <div>
         <h1
           className={`text-lg font-bold capitalize tracking-wider ${isCompleted ? `line-through` : ``}`}
@@ -22,13 +22,13 @@ const CardOne = ({
           delectus, fugit necessitatibus fugiat.`}
         </p>
       </div>
-      <div className="flex gap-x-2">
-        <Button onClick={buttonOneClick} className={`bg-dark-green text-white`}>
+      <div className="flex gap-x-2 mt-10">
+        <Button onClick={buttonOneClick} className={`bg-black/60 text-white dark:text-white dark:border`}>
           completed
         </Button>
         <Button
           onClick={buttonTwoClick}
-          className={`bg-dark-green text-milk-white`}
+          className={` text-milk-white dark:border`}
         >
           delete
         </Button>
