@@ -13,6 +13,11 @@ const Projects = () => {
       para: "made with react js and TailwindCSS, getting data and setting up all of the jundamental work so its easy to view and manage it after",
       projectLink: "/apiData",
     },
+    {
+      title: "fetching APIdata from JsonPlace holder",
+      para: "made with react js and TailwindCSS, getting data and setting up all of the jundamental work so its easy to view and manage it after",
+      projectLink: "/apiData",
+    },
   ];
 
   return (
@@ -34,10 +39,10 @@ const Projects = () => {
         </div>
 
         {/* projects */}
-        <div className="py-10 flex justify-center items-center px-20 gap-20 ">
+        <div className="py-10 flex justify-center flex-wrap items-center px-20 gap-20 ">
           {projectData.map((item, index) => {
             return (
-              <div key={index}>
+              <div key={index} className="w-120">
                 <ProjectCard
                   title={item.title}
                   para={item.para}

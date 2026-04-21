@@ -22,7 +22,7 @@ const ProjectCard = ({ className, title, para, image, link }) => {
           </div>
         </div>
         <button
-          className="px-3 py-2 bg-white/60 text-black capitalize w-full border-t "
+          className="px-3 py-2 capitalize w-full border-t dark:border-t-white cursor-pointer "
           onClick={(e) => {
             e.preventDefault();
           }}
