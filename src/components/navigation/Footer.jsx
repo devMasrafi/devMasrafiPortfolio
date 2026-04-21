@@ -54,7 +54,7 @@ const Footer = ({ className }) => {
       </div>
 
       {/* copyright stuff */}
-      <div className="flex justify-around w-200 mx-auto my-10 capitalize list-none list-inside underline underline-offset-8 font-semibold opacity-40 italic">
+      <div className="flex justify-around w-200 mx-auto py-10 capitalize list-none list-inside underline underline-offset-8 font-semibold opacity-40 italic">
         <li>@2026 all rights reserve</li>
         <li>privacy</li>
         <li>terms and conditions</li>
