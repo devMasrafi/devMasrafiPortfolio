@@ -13,23 +13,24 @@ const CardOne = ({
         <h1
           className={`text-lg font-bold capitalize tracking-wider ${isCompleted ? `line-through` : ``}`}
         >
-          {todoTitle ? todoTitle : `something should be here`}{" "}
+          {todoTitle ? todoTitle : `This is your list title.`}{" "}
         </h1>
-        <p className={`tracking-wide my-3 ${isCompleted ? "line-through" : ""}`}>
+        <p
+          className={`tracking-wide my-3 ${isCompleted ? "line-through" : ""}`}
+        >
           {todoDetails
             ? todoDetails
-            : `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia
-          delectus, fugit necessitatibus fugiat.`}
+            : `this text is for fresh start and it will be disapear once you add a todo here..`}
         </p>
       </div>
       <div className="flex gap-x-2 mt-10">
-        <Button onClick={buttonOneClick} className={`bg-black/60 text-white dark:text-white dark:border`}>
+        <Button
+          onClick={buttonOneClick}
+          className={`bg-black/60 text-white dark:text-white dark:border`}
+        >
           completed
         </Button>
-        <Button
-          onClick={buttonTwoClick}
-          className={` text-milk-white dark:border`}
-        >
+        <Button onClick={buttonTwoClick} className={` text-milk-white border`}>
           delete
         </Button>
       </div>

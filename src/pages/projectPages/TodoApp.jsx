@@ -1,6 +1,7 @@
 import CardOne from "../../components/cards/CardOne";
 import Button from "../../components/btn/Button";
 import { useEffect, useState } from "react";
+import Footer from "../../components/navigation/Footer";
 
 const TodoApp = () => {
   const [todoList, setTodoList] = useState([]);
@@ -75,83 +76,90 @@ const TodoApp = () => {
   }, [todoList]);
 
   return (
-    <div className="flex justify-around mt-20 w-6xl mx-auto ">
-      <div>
-        {/* form */}
-        <form onSubmit={todoSubmit} className="w-100">
-          <div className="flex flex-col placeholder:text-dark placeholder:dark:text-white ">
-            <label
-              htmlFor="todoTitle"
-              className="text-lg pb-3 capitalize font-medium tracking-wider"
-            >
-              create Todo
-            </label>
-            <input
-              onChange={todoTitle}
-              value={addedTitle}
-              type="text"
-              placeholder="type here..."
-              className="border px-3 py-1 rounded-lg outline-none mb-4"
-            />
-            <textarea
-              type="text"
-              onChange={todoDiscription}
-              value={addedDiscription}
-              placeholder="add details here..."
-              rows={8}
-              className="border mb-6 rounded-lg px-2 py-3 resize-none outline-none"
-            />
-          </div>
+    <main className="pt-10 w-7xl mx-auto border-x  ">
+      <div className="w-full  ">
+        <div className="flex justify-around border-b ">
           <div>
-            <Button className={`dark:text-white outline-1`}>submit</Button>
-          </div>
-        </form>
-      </div>
-
-      {/* list for todo */}
-      <div>
-        <div className="flex justify-between mb-2">
-          <Button
-            className={`bg-green dark:text-white border`}
-            onClick={() => setFilter("all")}
-          >
-            all
-          </Button>
-          <Button
-            className={`bg-green dark:text-white border`}
-            onClick={() => setFilter("active")}
-          >
-            active
-          </Button>
-          <Button
-            className={`bg-green dark:text-white border`}
-            onClick={() => setFilter("completed")}
-          >
-            completed
-          </Button>
-        </div>
-        <div className="h-135 mt-5 overflow-y-auto overflow-x-hidden scrollbar-hide">
-          {todoList.length === 0 ? (
-            <div className="border rounded-2xl">
-              <CardOne />
-            </div>
-          ) : (
-            filteredTodos.map((todo) => (
-              <div>
-                <CardOne
-                  key={todo.id}
-                  todoTitle={todo.todoTitle}
-                  todoDetails={todo.todoDetails}
-                  isCompleted={todo.isCompleted}
-                  buttonOneClick={() => completedTodo(todo.id)}
-                  buttonTwoClick={() => deleteTodo(todo.id)}
+            {/* form */}
+            <form onSubmit={todoSubmit} className="w-100">
+              <div className="flex flex-col placeholder:text-dark placeholder:dark:text-white ">
+                <label
+                  htmlFor="todoTitle"
+                  className="text-lg pb-3 capitalize font-medium tracking-wider"
+                >
+                  create Todo
+                </label>
+                <input
+                  onChange={todoTitle}
+                  value={addedTitle}
+                  type="text"
+                  placeholder="type here..."
+                  className="border px-3 py-1 rounded-lg outline-none mb-4"
+                />
+                <textarea
+                  type="text"
+                  onChange={todoDiscription}
+                  value={addedDiscription}
+                  placeholder="add details here..."
+                  rows={8}
+                  className="border mb-6 rounded-lg px-2 py-3 resize-none outline-none"
                 />
               </div>
-            ))
-          )}
+              <div>
+                <Button className={`dark:text-white outline-1`}>submit</Button>
+              </div>
+            </form>
+          </div>
+
+          {/* list for todo */}
+          <div>
+            <div className="flex justify-between mb-2">
+              <Button
+                className={` border ${filter === "all" ? "bg-green-300 text-black" : ""}`}
+                onClick={() => setFilter("all")}
+              >
+                all
+              </Button>
+              <Button
+                className={`border ${filter === "active" ? "bg-green-300 text-black" : ""} `}
+                onClick={() => setFilter("active")}
+              >
+                active
+              </Button>
+              <Button
+                className={`border ${filter === "completed" ? "bg-green-300 text-black" : ""}`}
+                onClick={() => setFilter("completed")}
+              >
+                completed
+              </Button>
+            </div>
+            <div className="h-135 mt-5 overflow-y-auto overflow-x-hidden scrollbar-hide">
+              {todoList.length === 0 ? (
+                <div className="border rounded-2xl">
+                  <CardOne />
+                </div>
+              ) : (
+                filteredTodos.map((todo) => (
+                  <div>
+                    <CardOne
+                      key={todo.id}
+                      todoTitle={todo.todoTitle}
+                      todoDetails={todo.todoDetails}
+                      isCompleted={todo.isCompleted}
+                      buttonOneClick={() => completedTodo(todo.id)}
+                      buttonTwoClick={() => deleteTodo(todo.id)}
+                    />
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="mt-6">
+          <Footer />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
