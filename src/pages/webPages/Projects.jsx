@@ -4,14 +4,14 @@ import ProjectCard from "../../components/cards/ProjectCard";
 const Projects = () => {
   const projectData = [
     {
-      title: "Todo App with react js and taiwnd",
+      title: "Todo App with react js and tailwindCSS",
       para: "made with react js and TailwindCSS instant dom and CRUD system build in. local storage set so that it will not be lost. and filter system.",
       projectLink: "/todoApp",
     },
     {
-      title: "fetching APIdata from JsonPlace holder",
-      para: "made with react js and TailwindCSS, getting data and setting up all of the jundamental work so its easy to view and manage it after",
-      projectLink: "/apiData",
+      title: "Weather App. getting live data and information",
+      para: "Live weather application made with react js and TailwindCSS. every part is used from live server response and dynamic system.",
+      projectLink: "/weather",
     },
     {
       title: "fetching APIdata from JsonPlace holder",

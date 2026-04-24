@@ -2,6 +2,9 @@ import React from "react";
 import { NavLink } from "react-router";
 
 const ProjectCard = ({ className, title, para, image, link }) => {
+  const updateTitle = title ? title.slice(0, 35) + "..." : "";
+  const updatePara = para ? para.slice(0, 120) + "..." : "";
+
   return (
     <NavLink to={link}>
       <main className="border rounded-xl cursor-pointer hover:scale-105 duration-500 ease-out overflow-hidden">
@@ -11,11 +14,11 @@ const ProjectCard = ({ className, title, para, image, link }) => {
           </div>
           <div>
             <h2 className="text-2xl capitalize py-3">
-              {title ? title : `project title will be here`}
+              {title ? updateTitle : `project title will be here`}
             </h2>
             <p className="text-sm italic py-2">
               {para
-                ? para
+                ? updatePara
                 : `project summery will here: Lorem ipsum, dolor sit amet consectetur
           adipisicing elit. In iure, suscipit ducimus ipsam itaque vel.`}
             </p>

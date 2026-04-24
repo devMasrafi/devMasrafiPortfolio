@@ -7,6 +7,7 @@ import Layout from "./components/navigation/Layout";
 import Projects from "./pages/webPages/Projects";
 import TodoApp from "./pages/projectPages/TodoApp";
 import ApiDataPage from "./pages/projectPages/ApiDataPage";
+import WeatherApp from "./pages/projectPages/WeatherApp";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/apiData",
         element: <ApiDataPage />,
+      },
+      {
+        path: "/weather",
+        element: <WeatherApp />,
       },
     ],
   },

@@ -7,6 +7,9 @@ const CardOne = ({
   buttonTwoClick,
   isCompleted,
 }) => {
+
+  
+
   return (
     <div className="bg-milk-white w-120 px-5 py-4 rounded-2xl text-black dark:text-white mt-4 ">
       <div>
