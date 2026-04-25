@@ -30,3 +30,5 @@ const useWeatherData = (locationName) => {
 
   return { weatherApi, error, loading };
 };
+
+export default useWeatherData;
