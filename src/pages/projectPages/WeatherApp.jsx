@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useWeatherData from "../../hooks/wertherAPI/weatherData";
+import useWeatherData from "../../hooks/weatherApi/WeatherData";
 import { IoLocationSharp } from "react-icons/io5";
 import { NavLink } from "react-router";
 import { MdErrorOutline } from "react-icons/md";
