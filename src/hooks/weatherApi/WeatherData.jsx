@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const useWeatherData = (locationName) => {
   const [weatherApi, setWeatherApi] = useState(null);
   const [error, setError] = useState(null);
