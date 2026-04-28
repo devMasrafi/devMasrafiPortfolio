@@ -21,12 +21,14 @@ const Nav = () => {
         <NavLink to="/about">
           <li>about</li>
         </NavLink>
-        <NavLink to="/contact">
+        {/* <NavLink to="/contact">
           <li>conatct</li>
-        </NavLink>
+        </NavLink> */}
 
         {/* theme BTn */}
-        <ThemeToggle className={`border cursor-pointer px-3 py-1 rounded-2xl`} />
+        <ThemeToggle
+          className={`border cursor-pointer px-3 py-1 rounded-2xl`}
+        />
         {/* <NavLink to="/">Home</NavLink> */}
       </div>
     </main>
