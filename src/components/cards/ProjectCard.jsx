@@ -10,7 +10,7 @@ const ProjectCard = ({ className, title, para, image, link }) => {
       <main className="border rounded-xl cursor-pointer hover:scale-105 duration-500 ease-out overflow-hidden">
         <div className="p-4">
           <div className="w-full h-60 bg-white text-black border rounded-t-lg ">
-            {image ? image : `image`}{" "}
+            <img className="object-cover h-full w-full" src={image} alt="TOdo APp image" />
           </div>
           <div>
             <h2 className="text-2xl capitalize py-3">
