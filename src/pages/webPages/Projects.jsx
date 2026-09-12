@@ -15,12 +15,12 @@ const Projects = () => {
       para: "Live weather application made with react js and TailwindCSS. every part is used from live server response and dynamic system.",
       projectLink: "/weather",
     },
-    {
-      image: "src/assets/images/weatherAPp.png",
-      title: "Recipie Book modal style easy to follow",
-      para: "easy to use recipie book for different cuisines and detailed explanation on how to make each and every one of them. what to use and what to do on each of the step",
-      projectLink: "/recipiebook",
-    },
+    // {
+    //   image: "src/assets/images/weatherAPp.png",
+    //   title: "Recipie Book modal style easy to follow",
+    //   para: "easy to use recipie book for different cuisines and detailed explanation on how to make each and every one of them. what to use and what to do on each of the step",
+    //   projectLink: "/recipiebook",
+    // },
     {
       image: "src/assets/images/APiCall.png",
       title: "fetching APIdata from JsonPlace holder",
