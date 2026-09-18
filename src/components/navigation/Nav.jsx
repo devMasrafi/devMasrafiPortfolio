@@ -30,6 +30,8 @@ const Nav = () => {
 
           <NavLink to="/about">about</NavLink>
 
+          <NavLink to="/contact">contact</NavLink>
+
           <ThemeToggle className="cursor-pointer rounded-2xl border px-2 py-1 md:px-3" />
         </div>
 
@@ -52,9 +54,7 @@ const Nav = () => {
       {/* Mobile Navigation */}
       <div
         className={`overflow-hidden border-t transition-all duration-300 ease-in-out md:hidden ${
-          menuOpen
-            ? "max-h-60 opacity-100"
-            : "max-h-0 border-t-0 opacity-0"
+          menuOpen ? "max-h-60 opacity-100" : "max-h-0 border-t-0 opacity-0"
         }`}
       >
         <div className="flex flex-col px-3 py-2">
@@ -77,9 +77,16 @@ const Nav = () => {
           <NavLink
             to="/about"
             onClick={closeMenu}
-            className="py-3 capitalize transition-opacity hover:opacity-60"
+            className="border-b py-3 capitalize transition-opacity hover:opacity-60"
           >
             about
+          </NavLink>
+          <NavLink
+            to="/contact"
+            onClick={closeMenu}
+            className="py-3 capitalize transition-opacity hover:opacity-60"
+          >
+            contact
           </NavLink>
         </div>
       </div>
