@@ -33,7 +33,7 @@ const Home = () => {
     {
       question: "What tech stack do you work with?",
       answer:
-        "HTML, CSS, JavaScript, React, NextJS, tailwindCSS, ScSS, Node.js, MaterialUI,  REST APIs",
+        "HTML, CSS, JavaScript, React, NextJS, tailwindCSS, ScSS, Node.js, MaterialUI, REST APIs",
     },
     {
       question: "How do you approach building a project?",
@@ -51,61 +51,69 @@ const Home = () => {
   };
 
   return (
-    <main className="w-7xl mx-auto">
+    <main className="mx-auto w-full max-w-7xl">
       {/* hero banner */}
-      <div className="border-x border-b h-135 ">
-        <div className="flex flex-col items-center p-10">
-          <div className="mt-20">
-            <h1 className="text-4xl font-bold tracking-wide italic ">
-              devMasraf
+      <div className="border-x border-b">
+        <div className="flex flex-col items-center px-5 py-10 md:px-8 md:py-16 lg:px-10 lg:py-20">
+          <div className="mt-5 text-center md:mt-10 lg:mt-20">
+            <h1 className="text-3xl font-bold tracking-wide italic md:text-4xl lg:text-5xl">
+              devMasrafi
             </h1>
-            <h3 className="text-3xl opacity-50 capitalize my-4">
+
+            <h3 className="my-3 text-xl capitalize opacity-50 md:my-4 md:text-2xl lg:text-3xl">
               all project in one place
             </h3>
           </div>
-          <div className="w-200 my-15">
-            <p className="text-lg italic  ">
+
+          <div className="my-8 w-full max-w-3xl md:my-10 lg:my-15">
+            <p className="text-base italic md:text-lg">
               all type of project and test that can be done in react is done in
               this single project. All have been properly arranged and made
               navigate through react router. The peojct is done in pure
               JavaScript so it easy to understand. This peojcts can be viwed
               live here or on git repo or netlify or render
             </p>
-            <div className="flex justify-center items-center gap-2 my-5 ">
+
+            <div className="my-5 flex flex-wrap items-center justify-center gap-2">
               <NavLink to="https://github.com/devMasrafi" target="_blank">
-                <Button className="bg-black text-white border-2 border-dark-green  ">
+                <Button className="bg-black text-white border-2 border-dark-green">
                   github
                 </Button>
               </NavLink>
+
               <NavLink to="/contact">
-                <Button className="border-2 border-dark-green ">contact</Button>
+                <Button className="border-2 border-dark-green">
+                  contact
+                </Button>
               </NavLink>
             </div>
           </div>
         </div>
       </div>
 
-      {/* question and answers. */}
-      <div className="p-20 border-x">
-        <h2 className="text-2xl capitalize my-4 font-semibold">
+      {/* question and answers */}
+      <div className="border-x p-5 md:p-10 lg:p-20">
+        <h2 className="my-4 text-xl capitalize font-semibold md:text-2xl">
           Web Question and Answers
         </h2>
+
         <div>
           {qnaData.map((item, index) => (
             <div key={index} className="py-2">
-              <div className="flex items-center text-xl">
+              <div className="flex items-center text-base md:text-lg lg:text-xl">
                 {openQuestionIndex === index ? <FiMinus /> : <IoMdAdd />}
+
                 <h2
-                  // question and click
                   className="cursor-pointer pl-2"
                   onClick={() => toggleQuestion(index)}
                 >
-                  {item.question}{" "}
+                  {item.question}
                 </h2>
               </div>
+
               {/* answer */}
               {openQuestionIndex === index && (
-                <p className="ml-5 pl-5 text-lg italic px-2 py-1 bg-black/20 rounded-xl mt-2">
+                <p className="mt-2 ml-5 rounded-xl bg-black/20 px-2 py-1 pl-5 text-base italic md:text-lg">
                   {item.answer}
                 </p>
               )}
@@ -114,13 +122,13 @@ const Home = () => {
         </div>
       </div>
 
-      {/* leave a mail to contact leter */}
-      <div className="border-y border-x p-20 ">
+      {/* leave a mail to contact later */}
+      <div className="border-x border-y p-5 md:p-10 lg:p-20">
         <Subcription />
       </div>
 
       {/* footer component */}
-      <Footer className={`mt-20`} />
+      <Footer className="mt-10 md:mt-15 lg:mt-20" />
     </main>
   );
 };

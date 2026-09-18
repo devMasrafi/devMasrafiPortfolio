@@ -21,29 +21,34 @@ const Footer = ({ className }) => {
   ];
 
   return (
-    <div className={` ${className}`}>
+    <div className={`w-full ${className}`}>
       {/* upper Footer */}
-      <div className="flex justify-around items-center pb-15 border-b">
-        <NavLink to="/">
-          <h1 className="text-4xl font-bold tracking-wider italic">
+      <div className="flex flex-col items-center gap-10 border-b px-5 pb-10 md:flex-row md:justify-around md:items-center md:px-8 md:pb-15 lg:px-10">
+        <NavLink to="/" className="text-center md:text-left">
+          <h1 className="text-3xl font-bold tracking-wider italic md:text-4xl">
             devMasrafi
           </h1>
+
           <p className="text-sm italic tracking-wider opacity-60">
             simple, faster, reliable
           </p>
         </NavLink>
-        <div className="">
+
+        <div className="w-full md:w-auto">
           <div>
-            <h2 className="text-3xl capitalize">socials</h2>
+            <h2 className="text-center text-2xl capitalize md:text-3xl">
+              socials
+            </h2>
           </div>
-          <div className="w-130  flex justify-around my-3 border-y">
+
+          <div className="my-3 flex flex-wrap justify-center border-y">
             {socialLinks.map((items, index) => {
               return (
                 <NavLink
                   key={index}
                   to={items.link}
                   target="_blank"
-                  className={`border-x  p-4 capitalize`}
+                  className="border-x p-3 capitalize md:p-4"
                 >
                   {items.name}
                 </NavLink>
@@ -54,9 +59,11 @@ const Footer = ({ className }) => {
       </div>
 
       {/* copyright stuff */}
-      <div className="flex justify-around w-200 mx-auto py-10 capitalize list-none list-inside underline underline-offset-8 font-semibold opacity-40 italic">
+      <div className="flex flex-col items-center justify-center gap-4 px-5 py-8 text-center capitalize font-semibold italic opacity-40 md:flex-row md:gap-8 md:py-10">
         <li>@2026 all rights reserve</li>
+
         <li>privacy</li>
+
         <li>terms and conditions</li>
       </div>
     </div>
