@@ -30,28 +30,31 @@ const Projects = () => {
   ];
 
   return (
-    <main className="w-7xl mx-auto">
-      <div className="border-x ">
+    <main className="mx-auto w-full max-w-7xl">
+      <div className="border-x">
         {/* project page hero */}
-        {/* this is for information */}
-        <div className="py-20 border-b">
-          <div className="w-100 mx-auto">
-            <h2 className="text-4xl capitalize font-semibold">
+        <div className="border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+          <div className="mx-auto w-full max-w-lg">
+            <h2 className="text-3xl text-center capitalize font-semibold md:text-4xl">
               projects that have been worked on
             </h2>
-            <p className="text-lg my-3 tracking-wider italic opacity-60">
-              Every project in this web/site is made my Masrafi Mondol
-              (devMasrafi). On click it will take you to the project so you can
-              check it and interact with it.
+
+            <p className="my-3 text-center text-base tracking-wide italic opacity-60 md:text-lg">
+              Every project in this web/site is made my{" "}
+              <span className="text-blue-400 font-semibold">
+                Masrafi Mondol (devMasrafi)
+              </span>
+              . On click it will take you to the project so you can check it and
+              interact with it.
             </p>
           </div>
         </div>
 
         {/* projects */}
-        <div className="py-10 flex justify-center flex-wrap items-center px-20 gap-20 ">
+        <div className="flex flex-wrap items-center justify-center gap-8 px-5 py-10 md:gap-10 md:px-10 lg:gap-12 lg:px-12">
           {projectData.map((item, index) => {
             return (
-              <div key={index} className="w-120">
+              <div key={index} className="w-full md:w-[45%] lg:w-[30%]">
                 <ProjectCard
                   image={item.image}
                   title={item.title}
