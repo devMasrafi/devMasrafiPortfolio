@@ -1,16 +1,18 @@
-import React from "react";
 import ProjectCard from "../../components/cards/ProjectCard";
+import todoImage from "../../assets/images/todoApp.png";
+import weatherImage from "../../assets/images/weatherAPp.png";
+import apiImage from "../../assets/images/APiCall.png";
 
 const Projects = () => {
   const projectData = [
     {
-      image: "src/assets/images/todoApp.png",
+      image: todoImage,
       title: "Todo App with react js and tailwindCSS",
       para: "made with react js and TailwindCSS instant dom and CRUD system build in. local storage set so that it will not be lost. and filter system.",
       projectLink: "/todoApp",
     },
     {
-      image: "src/assets/images/weatherAPp.png",
+      image: weatherImage,
       title: "Weather App. getting live data and information",
       para: "Live weather application made with react js and TailwindCSS. every part is used from live server response and dynamic system.",
       projectLink: "/weather",
@@ -22,7 +24,7 @@ const Projects = () => {
     //   projectLink: "/recipiebook",
     // },
     {
-      image: "src/assets/images/APiCall.png",
+      image: apiImage,
       title: "fetching APIdata from JsonPlace holder",
       para: "made with react js and TailwindCSS, getting data and setting up all of the jundamental work so its easy to view and manage it after",
       projectLink: "/apiData",
