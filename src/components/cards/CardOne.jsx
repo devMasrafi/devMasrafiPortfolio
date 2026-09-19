@@ -11,7 +11,7 @@ const CardOne = ({
   
 
   return (
-    <div className="bg-milk-white w-120 px-5 py-4 rounded-2xl text-black dark:text-white mt-4 ">
+    <div className="bg-milk-white w-full lg:w-120 px-5 py-4 rounded-2xl text-black dark:text-white mt-4 ">
       <div>
         <h1
           className={`text-lg font-bold capitalize tracking-wider ${isCompleted ? `line-through` : ``}`}

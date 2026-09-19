@@ -2,11 +2,15 @@ import CardOne from "../../components/cards/CardOne";
 import Button from "../../components/btn/Button";
 import { useEffect, useState } from "react";
 import Footer from "../../components/navigation/Footer";
+import { GiBottomRight3dArrow } from "react-icons/gi";
+import { BiArrowToBottom, BiArrowToTop } from "react-icons/bi";
 
 const TodoApp = () => {
   const [todoList, setTodoList] = useState([]);
   const [addedTitle, setAddedTitle] = useState("");
   const [addedDiscription, setAddedDiscription] = useState("");
+
+  const [enableBtn, setEnableBtn] = useState(false);
 
   const todoTitle = (e) => {
     setAddedTitle(e.target.value);
@@ -76,12 +80,56 @@ const TodoApp = () => {
   }, [todoList]);
 
   return (
-    <main className="pt-10 w-7xl mx-auto border-x  ">
-      <div className="w-full  ">
-        <div className="flex justify-around border-b ">
-          <div>
+    <main className="pt-10 lg:max-w-7xl mx-auto border-x  ">
+      <div>
+        <div className="w-[95%] mx-auto lg:flex justify-around border-b ">
+          <div className="visible md:hidden ">
             {/* form */}
-            <form onSubmit={todoSubmit} className="w-100">
+            <div className="">
+              <button
+                className={`p-2 border rounded-xl flex items-center text-lg gap-2 mb-2`}
+                onClick={() => setEnableBtn(!enableBtn)}
+              >
+                {enableBtn ? <BiArrowToTop /> : <BiArrowToBottom />}
+                {enableBtn ? `close form` : `open form`}
+              </button>
+            </div>
+            {enableBtn && (
+              <form onSubmit={todoSubmit} className="lg:w-100 ">
+                <div className="flex flex-col placeholder:text-dark placeholder:dark:text-white ">
+                  <label
+                    htmlFor="todoTitle"
+                    className="text-lg pb-3 capitalize font-medium tracking-wider"
+                  >
+                    create Todo
+                  </label>
+                  <input
+                    onChange={todoTitle}
+                    value={addedTitle}
+                    type="text"
+                    placeholder="type here..."
+                    className="border px-3 py-1 rounded-lg outline-none mb-4"
+                  />
+                  <textarea
+                    type="text"
+                    onChange={todoDiscription}
+                    value={addedDiscription}
+                    placeholder="add details here..."
+                    rows={8}
+                    className="border mb-6 rounded-lg px-2 py-3 resize-none outline-none"
+                  />
+                </div>
+                <div>
+                  <Button className={`dark:text-white outline-1`}>
+                    submit
+                  </Button>
+                </div>
+              </form>
+            )}
+          </div>
+
+          <div className="hidden md:block">
+            <form onSubmit={todoSubmit} className="lg:w-100">
               <div className="flex flex-col placeholder:text-dark placeholder:dark:text-white ">
                 <label
                   htmlFor="todoTitle"
@@ -113,21 +161,21 @@ const TodoApp = () => {
 
           {/* list for todo */}
           <div>
-            <div className="flex justify-between mb-2">
+            <div className="mt-10 lg:mt-0 flex gap-2 md:pt-10 lg:justify-between mb-2">
               <Button
-                className={` border ${filter === "all" ? "bg-green-300 text-black" : ""}`}
+                className={`border px-3! md:px-10! ${filter === "all" ? "bg-green-300 text-black" : ""}`}
                 onClick={() => setFilter("all")}
               >
                 all
               </Button>
               <Button
-                className={`border ${filter === "active" ? "bg-green-300 text-black" : ""} `}
+                className={`border px-3! md:px-10! ${filter === "active" ? "bg-green-300 text-black" : ""} `}
                 onClick={() => setFilter("active")}
               >
                 active
               </Button>
               <Button
-                className={`border ${filter === "completed" ? "bg-green-300 text-black" : ""}`}
+                className={`border px-3! md:px-10! ${filter === "completed" ? "bg-green-300 text-black" : ""}`}
                 onClick={() => setFilter("completed")}
               >
                 completed
@@ -140,7 +188,7 @@ const TodoApp = () => {
                 </div>
               ) : (
                 filteredTodos.map((todo) => (
-                  <div>
+                  <div className="border rounded-2xl my-4">
                     <CardOne
                       key={todo.id}
                       todoTitle={todo.todoTitle}

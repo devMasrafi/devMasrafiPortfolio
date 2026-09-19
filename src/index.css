@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-red: #f45b26;
@@ -21,4 +21,13 @@ html.dark {
   transition:
     background-color 0.3s ease-in,
     color 0.3s ease;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
