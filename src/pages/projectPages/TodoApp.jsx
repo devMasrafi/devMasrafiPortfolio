@@ -261,7 +261,7 @@ const TodoApp = () => {
               </div>
 
               {filteredTodos.length > 3 && (
-                <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex justify-center bg-gradient-to-t from-white via-white/90 to-transparent pb-2 pt-8 dark:from-black dark:via-black/90">
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex justify-center bg-linear-to-t from-white via-white/90 to-transparent pb-2 pt-8 dark:from-black dark:via-black/90">
                   <span className="text-xs font-medium uppercase tracking-wider opacity-60">
                     Scroll for more
                   </span>
