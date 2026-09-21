@@ -1,10 +1,13 @@
 const WeatherSmallCard = ({ title, details }) => {
   return (
-    <div className="capitalize text-center p-5 border rounded-2xl w-40 h-full text-nowrap">
-      <h2 className="text-3xl  underline underline-offset-8 pb-2">
-        {title ? title : "loading..."}
+    <div className="flex min-h-28 min-w-0 w-full flex-col items-center justify-center overflow-hidden border p-3 text-center capitalize md:p-4">
+      <h2 className="max-w-full wrap-break-words text-xl font-semibold leading-tight md:text-2xl">
+        {title || "--"}
       </h2>
-      <p className="capitalize">{details ? details : "loading..."}</p>
+
+      <p className="mt-2 wrap-break-words text-xs leading-5 opacity-70 md:text-sm">
+        {details || "loading..."}
+      </p>
     </div>
   );
 };

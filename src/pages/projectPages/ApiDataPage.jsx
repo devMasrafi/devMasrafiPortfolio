@@ -1,126 +1,268 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router";
-import Button from "../../components/btn/Button";
 import useApiData from "../../hooks/fetchData/ApiData";
 import CardTwo from "../../components/cards/CardTwo";
 import Footer from "../../components/navigation/Footer";
 
+const ITEMS_PER_PAGE = 12;
+
 const ApiDataPage = () => {
-  const { apiData, loading } = useApiData();
+  const { apiData, loading, error } = useApiData();
+
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
-  // console.log(apiData);
+  const [selectedPost, setSelectedPost] = useState(null);
 
-  // serach and Filter
-  const handleChange = (e) => {
-    const searchInput = e.target.value;
-    setSearch(searchInput);
-  };
-  const filteredData = apiData.filter((data) => {
-    if (!search) {
+  const filteredData = apiData.filter((post) => {
+    const query = search.trim().toLowerCase();
+
+    if (!query) {
       return true;
     }
-    const serachQuery = search.trim().toLowerCase();
-    return data.title.toLowerCase().includes(serachQuery);
+
+    return (
+      post.title.toLowerCase().includes(query) ||
+      post.body.toLowerCase().includes(query)
+    );
   });
 
-  // pagination of items
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
 
-  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const safeCurrentPage = Math.min(
+    currentPage,
+    Math.max(totalPages, 1),
+  );
 
-  // pages
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  console.log(totalPages);
+  const firstItemIndex = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
 
-  useEffect(() => {
+  const currentItems = filteredData.slice(
+    firstItemIndex,
+    firstItemIndex + ITEMS_PER_PAGE,
+  );
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 250,
+      behavior: "smooth",
+    });
+  };
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
     setCurrentPage(1);
-  }, [search]);
+    setSelectedPost(null);
+    scrollToTop();
+  };
+
+  const handleViewPost = (post) => {
+    setSelectedPost(post);
+  };
+
+  const handlePreviousPage = () => {
+    if (safeCurrentPage === 1) {
+      return;
+    }
+
+    setCurrentPage((page) => Math.max(page - 1, 1));
+    setSelectedPost(null);
+    scrollToTop();
+  };
+
+  const handleNextPage = () => {
+    if (safeCurrentPage === totalPages) {
+      return;
+    }
+
+    setCurrentPage((page) => Math.min(page + 1, totalPages));
+    setSelectedPost(null);
+    scrollToTop();
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setSelectedPost(null);
+    scrollToTop();
+  };
 
   return (
-    <main className="w-7xl mx-auto border-x">
-      <div className="h-120 flex items-center justify-center border-b">
-        <div className="w-120">
-          <h2 className="text-3xl capitalize font-semibold my-3">
-            Api Data fetching and filtering
-          </h2>
-          <p className="italic opacity-60 ">
-            This projet is for api data calling making much less request to
-            server so that its better for long term use.
+    <main className="mx-auto w-full max-w-7xl border-x">
+      {/* Introduction */}
+      <section className="border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            React API project
           </p>
-          <NavLink to={"/projects"} className="">
-            <Button
-              className={`bg-black/80 text-white dark:bg-white dark:text-black mt-4`}
-            >
-              go back
-            </Button>
+
+          <h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl">
+            API search and pagination
+          </h1>
+
+          <p className="mt-4 leading-7 opacity-70 md:text-lg">
+            A data browsing interface using JSONPlaceholder with client-side
+            search, pagination, loading states, error handling, and reusable
+            result cards.
+          </p>
+
+          <NavLink
+            to="/projects"
+            className="mt-6 inline-block border px-5 py-2 font-medium transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+          >
+            Back to projects
           </NavLink>
         </div>
-      </div>
-      {/* cards and posts */}
-      <div className="h-full border-b pb-10">
-        {/* api filter and settings */}
-        <div className="flex justify-between border-b py-5">
+      </section>
+
+      {/* Data area */}
+      <section className="border-b px-5 py-10 md:px-10 md:py-14 lg:px-20 lg:py-16">
+        <div className="flex flex-col gap-5 border-b pb-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="capitalize ml-4 text-lg ">
-              total results: {apiData.length}
+            <p className="text-sm uppercase tracking-wider opacity-60">
+              Results
+            </p>
+
+            <p className="mt-1 text-xl font-semibold">
+              {filteredData.length}{" "}
+              {filteredData.length === 1 ? "post" : "posts"} found
             </p>
           </div>
-          <div>
+
+          <label className="w-full md:max-w-sm">
+            <span className="mb-2 block text-sm font-medium">
+              Search posts
+            </span>
+
             <input
-              type="text"
+              type="search"
               value={search}
-              onChange={handleChange}
-              placeholder="serach here"
-              className="outline px-2 py-1 w-80 mr-4 rounded-lg"
+              onChange={handleSearchChange}
+              placeholder="Search by title or content"
+              className="w-full rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400"
             />
-          </div>
+          </label>
         </div>
-        {/* api data render */}
-        <div>
-          <div className="flex flex-wrap justify-center gap-7 mt-8">
-            {loading ? (
-              <h1 className=" w-full text-center my-6 ">Loading...</h1>
-            ) : (
-              currentItems.map((posts) => {
-                return (
-                  <CardTwo
-                    key={posts.id}
-                    id={posts.id}
-                    title={posts.title}
-                    body={posts.body}
-                  />
-                );
-              })
-            )}
-          </div>
-        </div>
-      </div>
 
-      {/* pages */}
-      <div className="flex justify-center gap-2 py-10 border-b">
-        {Array.from({ length: totalPages }, (_, index) => (
+        <div className="mt-8" aria-live="polite">
+          {loading && (
+            <p className="py-12 text-center text-lg opacity-60">
+              Loading posts...
+            </p>
+          )}
+
+          {!loading && error && (
+            <div className="py-12 text-center">
+              <p className="text-lg font-semibold">
+                We could not load the posts.
+              </p>
+
+              <p className="mt-2 opacity-60">{error}</p>
+            </div>
+          )}
+
+          {!loading && !error && currentItems.length === 0 && (
+            <div className="py-12 text-center">
+              <p className="text-lg font-semibold">No posts found.</p>
+
+              <p className="mt-2 opacity-60">
+                Try a different search term.
+              </p>
+            </div>
+          )}
+
+          {!loading && !error && currentItems.length > 0 && (
+            <div className="flex flex-wrap gap-5">
+              {currentItems.map((post) => (
+                <CardTwo
+                  key={post.id}
+                  id={post.id}
+                  title={post.title}
+                  body={post.body}
+                  onView={handleViewPost}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Pagination */}
+      {!loading && !error && totalPages > 1 && (
+        <nav
+          aria-label="Posts pagination"
+          className="flex flex-wrap items-center justify-center gap-2 border-b px-5 py-8"
+        >
           <button
-            key={index}
-            onClick={() => setCurrentPage(index + 1)}
-            className={`px-3 py-1 border rounded cursor-pointer ${
-              currentPage === index + 1
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : ""
-            }`}
+            type="button"
+            onClick={handlePreviousPage}
+            disabled={safeCurrentPage === 1}
+            className="border px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {index + 1}
+            Previous
           </button>
-        ))}
-      </div>
 
-      {/* footer */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {Array.from({ length: totalPages }, (_, index) => {
+              const pageNumber = index + 1;
+              const isActive = safeCurrentPage === pageNumber;
 
-      <div className="mt-20">
-        <Footer />
-      </div>
+              return (
+                <button
+                  key={pageNumber}
+                  type="button"
+                  onClick={() => handlePageChange(pageNumber)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`min-w-10 border px-3 py-2 text-sm ${
+                    isActive
+                      ? "bg-black text-white dark:bg-white dark:text-black"
+                      : ""
+                  }`}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={handleNextPage}
+            disabled={safeCurrentPage === totalPages}
+            className="border px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Next
+          </button>
+        </nav>
+      )}
+
+      {/* Selected post details */}
+      {selectedPost && (
+        <section className="border-b px-5 py-10 md:px-10 md:py-14 lg:px-20">
+          <div className="flex items-start justify-between gap-5">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+                Selected post
+              </p>
+
+              <h2 className="mt-3 text-2xl font-semibold capitalize md:text-3xl">
+                {selectedPost.title}
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setSelectedPost(null)}
+              className="border px-3 py-2 text-sm"
+            >
+              Close
+            </button>
+          </div>
+
+          <p className="mt-5 max-w-3xl leading-7 opacity-70">
+            {selectedPost.body}
+          </p>
+        </section>
+      )}
+
+      <Footer />
     </main>
   );
 };

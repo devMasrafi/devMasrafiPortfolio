@@ -1,317 +1,330 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router";
-import Button from "../../components/btn/Button";
-import { IoMdAdd } from "react-icons/io";
-import { FiMinus } from "react-icons/fi";
+import { useState } from "react";
+import { NavLink } from "react-router";
 import Footer from "../../components/navigation/Footer";
 import Subcription from "../../components/contactSections/Subcription";
+
+const projects = [
+  {
+    title: "Medicinal Center Dashboard",
+    status: "Project concept",
+    description:
+      "A dashboard concept for organizing operational data, workflows, and day-to-day management in one interface.",
+    stack: ["React", "Node.js", "MongoDB", "Express"],
+  },
+  {
+    title: "Blogging Platform",
+    status: "Planned MERN application",
+    description:
+      "A publishing platform for creating, managing, and presenting written content through a clear user experience.",
+    stack: ["MongoDB", "Express", "React", "Node.js"],
+  },
+  {
+    title: "Losho Shop",
+    status: "Planned product interface",
+    description:
+      "An e-commerce interface focused on product browsing, cart management, and a simple customer journey.",
+    stack: ["React", "Firebase", "Tailwind CSS", "REST API"],
+  },
+];
+
+const primaryStack = [
+  "MongoDB",
+  "Express",
+  "React",
+  "Node.js",
+  "JavaScript",
+  "REST APIs",
+];
+
+const additionalExperience = [
+  "WordPress",
+  "Angular",
+  "Next.js",
+  "Tailwind CSS",
+  "Firebase",
+  "Git",
+];
+
+const questions = [
+  {
+    question: "What do you build?",
+    answer:
+      "I build responsive and practical web applications with the MERN stack, including React interfaces, API integrations, dashboards, and content-driven experiences.",
+  },
+  {
+    question: "What experience do you have?",
+    answer:
+      "I have previous junior frontend development experience, freelance and personal project experience, previous WordPress work, and working knowledge of Angular.",
+  },
+  {
+    question: "What roles are you looking for?",
+    answer:
+      "I am looking for junior MERN stack, frontend developer, internship, freelance, or collaborative product opportunities.",
+  },
+];
 
 const Home = () => {
   const [openQuestionIndex, setOpenQuestionIndex] = useState(null);
 
-  const qnaData = [
-    {
-      question: "What do you build?",
-      answer:
-        "I focused on building responsive and interactive web apps using my Primary stack and additional experience & with working knowledge of other frameworks and libraries.",
-    },
-    {
-      question: "What experience do you have?",
-      answer:
-        "I have done 2 jobs as a junior frontend developer. I have also done some freelance work and personal projects.",
-    },
-    {
-      question: "What roles are you looking for?",
-      answer:
-        "I am looking for a role as a junior frontend developer or MERN stack developer. I am open to working in a team or independently, and I am eager to contribute my skills and learn from experienced professionals.",
-    },
-  ];
-
   const toggleQuestion = (index) => {
-    if (openQuestionIndex === index) {
-      setOpenQuestionIndex(null);
-    } else {
-      setOpenQuestionIndex(index);
-    }
+    setOpenQuestionIndex((currentIndex) =>
+      currentIndex === index ? null : index,
+    );
   };
 
   return (
     <main className="mx-auto w-full max-w-7xl">
-      {/* hero banner */}
-      <div className="border-x border-b">
-        <div className="flex flex-col items-center px-5 py-10 md:px-8 md:py-16 lg:px-10 lg:py-20">
-          <div className="mt-5 text-center md:mt-10 lg:mt-20">
-            <h1 className="text-3xl font-bold tracking-wide italic md:text-4xl lg:text-5xl">
-              devMasrafi
-            </h1>
+      {/* Hero */}
+      <section className="border-x border-b px-5 py-14 md:px-10 md:py-20 lg:px-20 lg:py-28">
+        <div className="max-w-4xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            MERN stack developer
+          </p>
 
-            <h3 className="my-3 text-xl capitalize opacity-50 md:my-4 md:text-2xl lg:text-xl">
-              Full stack - MERN Stack developer
-            </h3>
-          </div>
+          <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+            Building practical web experiences from idea to interface.
+          </h1>
 
-          <div className="my-8 w-full max-w-3xl md:my-10 lg:my-15">
-            <p className="text-base text-center italic md:text-lg ">
-              I build responsive web applications with MongoDB, Express, React,
-              and Node.js. I also bring previous WordPress experience and
-              working knowledge of Angular.
-            </p>
+          <p className="mt-6 max-w-2xl text-base leading-7 opacity-70 md:text-lg">
+            Hi, I am Masrafi Mondol. I build responsive web applications with
+            MongoDB, Express, React, and Node.js. I also bring previous
+            WordPress experience and working knowledge of Angular.
+          </p>
 
-            <div className="my-5 flex flex-wrap items-center justify-center gap-2">
-              <NavLink to="https://github.com/devMasrafi" target="_blank">
-                <Button className="bg-black text-white border-2 border-dark-green">
-                  github
-                </Button>
-              </NavLink>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <NavLink
+              to="/projects"
+              className="border bg-black px-6 py-3 font-medium capitalize tracking-wide text-white transition hover:opacity-80 dark:bg-white dark:text-black"
+            >
+              view projects
+            </NavLink>
 
-              <NavLink to="/contact">
-                <Button className="border-2 border-dark-green">contact</Button>
-              </NavLink>
-            </div>
+            <NavLink
+              to="/contact"
+              className="border px-6 py-3 font-medium capitalize tracking-wide transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+            >
+              contact me
+            </NavLink>
+
+            <a
+              href="https://github.com/devMasrafi"
+              target="_blank"
+              rel="noreferrer"
+              className="border px-6 py-3 font-medium capitalize tracking-wide transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+            >
+              github
+            </a>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* CTA of my current position */}
-      <div className="border-x border-b py-5 md:py-15">
-        <div className="mx-3 md:flex md:items-center md:justify-between md:px-10 lg:px-20">
-          <p className="text-lg md:text-md w-[90%] md:w-[70%] tracking-wider">
-            Looking for a{" "}
-            <span className="text-blue-400 font-bold">
-              junior MERN stack and frontend developer opportunities.
-            </span>{" "}
-            Where I can own UI architecture, not just implement tickets.
-          </p>
+      {/* Availability */}
+      <section className="border-x border-b px-5 py-6 md:px-10 lg:px-20">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+              Current availability
+            </p>
+
+            <p className="mt-2 max-w-2xl leading-7">
+              Open to junior MERN stack, frontend developer, internship,
+              freelance, and collaborative product opportunities.
+            </p>
+          </div>
+
           <NavLink
             to="/contact"
-            className="px-4 py-1  rounded-full my-4 bg-black/10 text-black  md:text-nowrap dark:bg-white/10 dark:text-white"
+            className="w-fit rounded-full border border-green-600 bg-green-100 px-4 py-2 text-sm font-semibold text-green-800 transition hover:opacity-80 dark:border-green-400 dark:bg-green-900/40 dark:text-green-200"
           >
             Open to work
           </NavLink>
         </div>
-      </div>
+      </section>
 
-      {/* Project section */}
-      <div className="border-x border-b py-5 md:px-15">
-        <div className="mx-3 ">
-          {/* header */}
+      {/* Selected work */}
+      <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <h2 className="text-4xl font-semibold underline underline-offset-8 pb-5 capitalize ">
-              selected Work:{" "}
-              <span className="text-lg font-normal">03 works listed</span>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+              Work in progress
+            </p>
+
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              Selected work
             </h2>
           </div>
+
+          <p className="max-w-md leading-7 opacity-70">
+            These projects represent the direction of my work. Detailed case
+            studies and live links will be added as each project is completed.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
+          {projects.map((project) => (
+            <article
+              key={project.title}
+              className="flex flex-col border p-5 transition hover:-translate-y-1"
+            >
+              <div className="flex-1">
+                <p className="text-xs font-semibold uppercase tracking-wider text-blue-400">
+                  {project.status}
+                </p>
+
+                <h3 className="mt-3 text-2xl font-semibold">
+                  {project.title}
+                </h3>
+
+                <p className="mt-4 text-sm leading-6 opacity-70">
+                  {project.description}
+                </p>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {project.stack.map((technology) => (
+                  <span key={technology} className="border px-2 py-1 text-xs">
+                    {technology}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8">
+          <NavLink
+            to="/projects"
+            className="inline-block border px-5 py-2 font-medium transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+          >
+            Explore current projects
+          </NavLink>
+        </div>
+      </section>
+
+      {/* Primary stack */}
+      <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12 lg:gap-20">
           <div>
-            {/* project 1 */}
-            <div className="p-5 border mt-10 rounded-md md:flex md:justify-between ">
-              <div className="md:w-[60%] md:flex md:flex-col md:justify-between md:gap-5">
-                <div>
-                  <h2 className="text-3xl">
-                    Project concept: Medicinal Center Dashboard
-                  </h2>
-                  <p className="text-md tracking-wider py-3">
-                    Thank you for visiting the project section. The current
-                    project is still under development, and I am actively
-                    working on it. I appreciate your patience and understanding
-                    as I continue to enhance and refine the project to deliver a
-                    high-quality experience. Please stay tuned for updates, and
-                    I look forward to sharing the completed version with you
-                    soon.
-                  </p>
-                </div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+              Primary stack
+            </p>
 
-                <div className=" flex flex-wrap gap-2 md:max-w-[70%]">
-                  <Button>Reactjs</Button>
-                  <Button>Firebase</Button>
-                  <Button>TailwindCSS</Button>
-                  <Button>Rest API</Button>
-                </div>
-              </div>
-              <div className="flex mt-10 md:mt-0 gap-2 md:flex-col">
-                <Link
-                  to="/projects"
-                  className=" hover:underline px-3 py-1 border my-2"
-                >
-                  View Project
-                </Link>
-                <Link to="#" className=" hover:underline px-3 py-1 border my-2">
-                  Source Code
-                </Link>
-              </div>
-            </div>
-            {/* project 2 */}
-
-            <div className="p-5 border mt-10 rounded-md md:flex md:justify-between ">
-              <div className="md:w-[60%] md:flex md:flex-col md:justify-between md:gap-5">
-                <div>
-                  <h2 className="text-3xl">
-                    Planned MERN application: Blogging Platform
-                  </h2>
-                  <p className="text-md tracking-wider py-3">
-                    A bloggers web application that allows users to create,
-                    publish, and manage their own blogs. It provides a
-                    user-friendly interface for writing and formatting blog
-                    posts, as well as features for organizing content, adding
-                    images and multimedia, and engaging with readers through
-                    comments and social sharing.
-                  </p>
-                </div>
-
-                <div className=" flex flex-wrap gap-2 md:max-w-[70%]">
-                  <Button>Nextjs</Button>
-                  <Button>MongoDb</Button>
-                  <Button>TailwindCSS</Button>
-                  <Button>Express</Button>
-                  <Button>Rest API</Button>
-                </div>
-              </div>
-              <div className="flex mt-10 md:mt-0 gap-2 md:flex-col">
-                <Link
-                  to="/projects"
-                  className=" hover:underline px-3 py-1 border my-2"
-                >
-                  View Project
-                </Link>
-                <Link
-                  to="/projects"
-                  className=" hover:underline px-3 py-1 border my-2"
-                >
-                  Source Code
-                </Link>
-              </div>
-            </div>
-            {/* project 3 */}
-            <div className="p-5 border mt-10 rounded-md md:flex md:justify-between ">
-              <div className="md:w-[60%] md:flex md:flex-col md:justify-between md:gap-5">
-                <div>
-                  <h2 className="text-3xl">
-                    Planned product interface: Losho Shop
-                  </h2>
-                  <p className="text-md tracking-wider py-3">
-                    A modern e-commerce platform designed for selling organic
-                    and natural products. It offers a seamless shopping
-                    experience with features for product browsing, cart
-                    management, secure checkout, and customer account
-                    management.
-                  </p>
-                </div>
-
-                <div className=" flex flex-wrap gap-2 md:max-w-[70%]">
-                  <Button>Nextjs</Button>
-                  <Button>Firebase</Button>
-                  <Button>TailwindCSS</Button>
-                  <Button>Rest API</Button>
-                </div>
-              </div>
-              <div className="flex mt-10 md:mt-0 gap-2 md:flex-col">
-                <Link
-                  to="/projects"
-                  className=" hover:underline px-3 py-1 border my-2"
-                >
-                  View Project
-                </Link>
-                <Link
-                  to="/projects"
-                  className=" hover:underline px-3 py-1 border my-2"
-                >
-                  Source Code
-                </Link>
-              </div>
-            </div>
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              Technologies I use to build.
+            </h2>
           </div>
 
-          <div className="text-center mt-10">
-            <NavLink to="/projects" className="rounded-md py-2 px-6 border ">
-              Explore current projects
+          <div className="flex flex-wrap content-start gap-3">
+            {primaryStack.map((skill) => (
+              <span key={skill} className="border px-4 py-2 text-sm font-medium">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Additional experience */}
+      <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12 lg:gap-20">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+              Additional experience
+            </p>
+
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              Broader frontend experience.
+            </h2>
+          </div>
+
+          <div>
+            <p className="leading-7 opacity-70">
+              My main direction is MERN development. My previous WordPress
+              experience and working knowledge of Angular help me understand
+              different frontend environments and project requirements.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {additionalExperience.map((skill) => (
+                <span key={skill} className="border px-4 py-2 text-sm">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+        <div className="mb-6">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            Quick answers
+          </p>
+
+          <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+            A little more about my direction.
+          </h2>
+        </div>
+
+        <div className="divide-y border-y">
+          {questions.map((item, index) => {
+            const isOpen = openQuestionIndex === index;
+
+            return (
+              <div key={item.question} className="py-4">
+                <button
+                  type="button"
+                  onClick={() => toggleQuestion(index)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 text-left text-lg font-medium"
+                >
+                  <span>{item.question}</span>
+                  <span className="text-2xl" aria-hidden="true">
+                    {isOpen ? "-" : "+"}
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <p className="mt-3 max-w-3xl leading-7 opacity-70">
+                    {item.answer}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-12">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+              Start a conversation
+            </p>
+
+            <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
+              Have a project or opportunity in mind?
+            </h2>
+          </div>
+
+          <div>
+            <p className="leading-7 opacity-70">
+              I am open to discussing frontend development, MERN stack work,
+              freelance projects, and opportunities to grow with a team.
+            </p>
+
+            <NavLink
+              to="/contact"
+              className="mt-6 inline-block border px-5 py-2 font-medium transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+            >
+              Get in touch
             </NavLink>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Skill Secntion */}
-      <div className="border-x border-b py-5 md:py-15">
-        <div className="mx-3 md:px-10 lg:px-20">
-          <div>
-            <h2 className="text-4xl font-semibold underline underline-offset-8 pb-5">
-              Skills
-            </h2>
-          </div>
-
-          <div className="md:flex md:justify-between md:gap-4">
-            <div>
-              <h2 className="text-xl py-5">Primary stack</h2>
-              <div className="flex flex-wrap gap-2">
-                <Button>JavaScript (Es6+)</Button>
-                <Button>TypeScript</Button>
-                <Button>ReactJS</Button>
-                <Button>NextJS</Button>
-                <Button>Angular JS</Button>
-                <Button>TailwindCSS</Button>
-                <Button>Node.js</Button>
-                <Button>REST APIs</Button>
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl py-5">Additional experience</h2>
-              <div className="flex flex-wrap gap-2">
-                <Button>WordPress</Button>
-                <Button>Angular</Button>
-                <Button>Next.js</Button>
-                <Button>Tailwind CSS</Button>
-                <Button>Firebase</Button>
-                <Button>Git</Button>
-              </div>
-            </div>
-            <div>
-              <h2 className="text-xl py-5">Design background</h2>
-              <div className="flex flex-wrap gap-2">
-                <Button>Figma</Button>
-                <Button>Photoshop</Button>
-                <Button>Canva</Button>
-                <Button>Eraser.IO</Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* question and answers */}
-      <div className="border-x p-5 md:p-10 lg:p-20">
-        <h2 className="my-4 text-xl capitalize font-semibold md:text-2xl">
-          Web Question and Answers
-        </h2>
-
-        <div>
-          {qnaData.map((item, index) => (
-            <div key={index} className="py-2">
-              <div className="flex items-center text-base md:text-lg lg:text-xl">
-                {openQuestionIndex === index ? <FiMinus /> : <IoMdAdd />}
-
-                <h2
-                  className="cursor-pointer pl-2"
-                  onClick={() => toggleQuestion(index)}
-                >
-                  {item.question}
-                </h2>
-              </div>
-
-              {/* answer */}
-              {openQuestionIndex === index && (
-                <p className="mt-2 ml-5 rounded-xl bg-black/20 px-2 py-1 pl-5 text-base italic md:text-lg">
-                  {item.answer}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* leave a mail to contact later */}
-      <div className="border-x border-y p-5 md:p-10 lg:p-20">
-        <Subcription />
-      </div>
-
-      {/* footer component */}
       <Footer className="mt-10 md:mt-15 lg:mt-20" />
     </main>
   );

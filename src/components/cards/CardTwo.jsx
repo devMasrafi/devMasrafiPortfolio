@@ -1,29 +1,34 @@
-import Button from "../btn/Button";
+const CardTwo = ({ title, body, id, onView }) => {
+  const displayTitle =
+    title && title.length > 48 ? `${title.slice(0, 48)}...` : title;
 
-const CardTwo = ({ title, body, id, className }) => {
-  const shortTitle = title ? title.slice(0, 45) + "..." : "";
-  const shortBody = body ? body.slice(0, 50) + " ..." : "";
-
-  const onClick = () => {
-    console.log(`you have clicked btn`);
-  };
+  const displayBody =
+    body && body.length > 120 ? `${body.slice(0, 120)}...` : body;
 
   return (
-    <div className="flex flex-col justify-between w-80 h-70  overflow-hidden rounded-xl border">
-      <div className="px-3 py-5 h-full flex flex-col justify-between">
-        <h2 className=" text-2xl capitalize font-medium ">
-          {title ? shortTitle : `title data should be here`}
+    <article className="flex min-w-0 w-full flex-col justify-between border p-5 sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.15em] text-blue-400">
+          Post {id}
+        </p>
+
+        <h2 className="mt-3 wrap-break-words text-xl font-semibold capitalize leading-tight">
+          {displayTitle || "Untitled post"}
         </h2>
-        <p className={` overflow-hidden`}>
-          {body
-            ? shortBody
-            : `Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam aspernatur, dolore veritatis accusantium iste debitis perspiciatis alias.`}
+
+        <p className="mt-4 wrap-break-words text-sm leading-6 opacity-70">
+          {displayBody || "No post content available."}
         </p>
       </div>
-      <Button onClick={onClick} className={`border-t rounded-none`}>
-        view info
-      </Button>
-    </div>
+
+      <button
+        type="button"
+        onClick={() => onView?.({ id, title, body })}
+        className="mt-6 w-full border px-4 py-2 text-sm font-medium capitalize transition hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+      >
+        view details
+      </button>
+    </article>
   );
 };
 

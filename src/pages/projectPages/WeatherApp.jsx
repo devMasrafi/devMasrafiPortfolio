@@ -1,186 +1,222 @@
-import React, { useEffect, useState } from "react";
-import useWeatherData from "../../hooks/weatherApi/WeatherData";
+import { useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
-import { NavLink } from "react-router";
 import { MdErrorOutline } from "react-icons/md";
 import Footer from "../../components/navigation/Footer";
 import WeatherSmallCard from "../../components/cards/WeatherSmallCard";
+import useWeatherData from "../../hooks/weatherApi/WeatherData";
 
 const WeatherApp = () => {
   const [locationInput, setLocationInput] = useState("");
-  const [locationName, setLocationName] = useState("dhaka");
+  const [locationName, setLocationName] = useState("Dhaka");
 
   const { weatherApi, error, loading } = useWeatherData(locationName);
 
-  console.log(weatherApi);
-  const handleLocationName = (e) => {
-    e.preventDefault();
+  const handleLocationSubmit = (event) => {
+    event.preventDefault();
 
-    if (!locationInput.trim()) return;
+    const nextLocation = locationInput.trim();
 
-    setLocationName(locationInput.trim());
+    if (
+      !nextLocation ||
+      nextLocation.toLowerCase() === locationName.toLowerCase()
+    ) {
+      return;
+    }
+
+    setLocationName(nextLocation);
     setLocationInput("");
   };
 
+  const currentWeather = weatherApi?.current;
+  const location = weatherApi?.location;
+
   return (
-    <main className="w-7xl mx-auto">
-      <div className="border-x border-b h-100 flex items-center justify-center">
-        <div className="w-120 tracking-wider">
-          <h2 className="text-3xl ">
-            Weather app using weather API. fully responsive and acurate data
-          </h2>
-          <p className="mt-2 ">
-            Weather app using Reactjs and TailwindCSS. Backend APi from{" "}
-            <span className="font-semibold tracking-wider text-lg italic text-blue-400 ">
-              <NavLink to={`https://www.weatherapi.com/`} target="_blank">
-                weatherapi.com
-              </NavLink>
-            </span>{" "}
-            Free api and usage with a limited number of request
+    <main className="mx-auto w-full max-w-7xl">
+      {/* Introduction */}
+      <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            React API project
           </p>
+
+          <h1 className="mt-3 text-4xl font-bold leading-tight md:text-5xl">
+            Live weather dashboard
+          </h1>
+
+          <p className="mt-4 leading-7 opacity-70 md:text-lg">
+            Search for a city and view live temperature, conditions, wind,
+            humidity, UV index, and visibility data from WeatherAPI.
+          </p>
+
+          <a
+            href="https://www.weatherapi.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-block text-sm font-semibold text-blue-400 hover:underline"
+          >
+            View WeatherAPI
+          </a>
         </div>
-      </div>
+      </section>
 
-      {/* main content */}
-      <div className="border-x border-b h-140 flex items-center justify-center">
-        <div className="flex items-center gap-4">
-          <div className="border p-10 rounded-xl h-120">
-            {/* search location */}
-            <div>
-              {/* input area */}
-              <div>
-                <input
-                  type="text"
-                  placeholder="enter city/location"
-                  value={locationInput}
-                  onChange={(e) => setLocationInput(e.target.value)}
-                  className="outline dark:outline-white -outline-offset-1 px-2 py-1 placeholder:text-black dark:placeholder:text-white rounded-l-xl "
-                />
-                <button
-                  onClick={handleLocationName}
-                  type="submit"
-                  className="bg-black text-white dark:bg-white dark:text-black px-2 py-1 rounded-r-xl"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
+      {/* Weather workspace */}
+      <section className="border-x border-b px-5 py-10 md:px-10 md:py-14 lg:px-20 lg:py-20">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          {/* Main weather card */}
+          <article className="border p-5 md:p-8">
+            <form
+              onSubmit={handleLocationSubmit}
+              className="flex w-full flex-col gap-2 sm:flex-row"
+            >
+              <label htmlFor="location" className="sr-only">
+                Search city or location
+              </label>
 
-            {/* details of the location */}
-            {error ? (
-              <div className="flex justify-center items-center h-full">
-                <p className="text-blue-400 w-50 text-center mt-3 text-lg flex flex-col justify-center items-center capitalize">
-                  <MdErrorOutline className="h-12 w-12" />"{locationName}" not
-                  found. Try another location.
+              <input
+                id="location"
+                type="search"
+                value={locationInput}
+                onChange={(event) => setLocationInput(event.target.value)}
+                placeholder="Search city or location"
+                className="min-w-0 flex-1 rounded-lg border px-3 py-2 outline-none focus:ring-2 focus:ring-blue-400"
+              />
+
+              <button
+                type="submit"
+                className="rounded-lg bg-black px-5 py-2 font-medium text-white transition hover:opacity-80 dark:bg-white dark:text-black"
+              >
+                Search
+              </button>
+            </form>
+
+            <div
+              className="mt-8 flex min-h-96 flex-col items-center justify-center text-center"
+              aria-live="polite"
+            >
+              {loading && (
+                <p className="text-lg opacity-60">
+                  Checking the latest conditions...
                 </p>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center">
-                <img
-                  className="h-40 w-40 "
-                  src={weatherApi?.current.condition.icon}
-                  alt="weather icon"
-                />
+              )}
 
-                {/* temperature */}
-                <div className="my-4">
-                  <h2 className="font-semibold text-6xl relative text-nowrap">
-                    {weatherApi ? weatherApi.current.temp_c : ""}{" "}
-                    <span className="absolute -top-2 text-3xl">&deg; c</span>
-                  </h2>
-                  <h2 className="font-semibold text-2xl relative my-2 opacity-45">
-                    or {""}
-                    {weatherApi ? weatherApi.current.temp_f : ""}{" "}
-                    <span className="absolute -top-2 text-xl">&deg; f</span>
-                  </h2>
-                </div>
-                <p className="capitalize text-lg font-semibold tracking-wider  ">
-                  condition:{" "}
-                  {`${weatherApi ? weatherApi.current.condition.text : ""}`}
-                </p>
-                <div className="flex items-center opacity-60 mt-3 ">
-                  <p className="flex items-center pr-2">
-                    <IoLocationSharp className="h-6 w-6 mr-1" />{" "}
-                    {weatherApi ? weatherApi.location.name : ""},{" "}
+              {!loading && error && (
+                <div className="max-w-xs">
+                  <MdErrorOutline
+                    className="mx-auto h-12 w-12 text-blue-400"
+                    aria-hidden="true"
+                  />
+
+                  <p className="mt-3 text-lg font-medium">
+                    We could not find “{locationName}”.
                   </p>
-                  <p>{weatherApi ? weatherApi.location.country : ""}</p>
-                </div>
-              </div>
-            )}
-          </div>
 
-          {/* right side */}
-          <div className="w-180 border h-120 rounded-xl ">
-            <div className="flex h-full items-center justify-center">
-              <div className="w-full">
-                <div className="flex flex-wrap gap-3 items-center justify-center">
-                  <WeatherSmallCard
-                    title={
-                      weatherApi == null ? "" : weatherApi.current.wind_kph
-                    }
-                    details={`wind speed`}
-                  />
-                  <WeatherSmallCard
-                    title={error ? "--" : weatherApi?.current.humidity}
-                    details={error ? "--" : "humidity"}
-                  />
-                  <WeatherSmallCard
-                    title={weatherApi?.current.uv}
-                    details={`Sun UV index `}
-                  />
-                  <WeatherSmallCard
-                    title={weatherApi?.current.vis_km}
-                    details={`visual/Km`}
-                  />
+                  <p className="mt-2 text-sm opacity-60">
+                    Try another city or location.
+                  </p>
                 </div>
-              </div>
+              )}
 
-              {/* guide information */}
-              <div className="h-full border-l p-10 w-130">
-                <h2 className="text-2xl capitalize  underline underline-offset-4 pb-5">
-                  guide
-                </h2>
-                <ul className="text-sm tracking-wider list-inside list-disc">
-                  <li className="pb-2">
-                    Current city has been set to{" "}
-                    <span className="text-blue-400 font-medium italic">
-                      {weatherApi ? weatherApi.location.name : "loading..."}
+              {!loading && !error && !weatherApi && (
+                <p className="opacity-60">
+                  Search for a city to view its current weather.
+                </p>
+              )}
+
+              {!loading && !error && weatherApi && (
+                <>
+                  <img
+                    src={currentWeather.condition.icon}
+                    alt={currentWeather.condition.text}
+                    className="h-32 w-32"
+                  />
+
+                  <p className="mt-2 text-6xl font-semibold">
+                    {currentWeather.temp_c}
+                    <span className="ml-1 text-3xl align-top">°C</span>
+                  </p>
+
+                  <p className="mt-2 text-lg opacity-60">
+                    {currentWeather.temp_f}°F
+                  </p>
+
+                  <p className="mt-4 text-lg font-semibold capitalize">
+                    {currentWeather.condition.text}
+                  </p>
+
+                  <div className="mt-3 flex flex-wrap items-center justify-center gap-2 opacity-60">
+                    <IoLocationSharp aria-hidden="true" />
+                    <span>
+                      {location.name}, {location.country}
                     </span>
-                  </li>
-                  <li className="pb-2">
-                    change the city by typing the name in the search bar
-                  </li>
-                  <li className="pb-2">
-                    if the city is in our database it will show
-                  </li>
-                  <li className="pb-2">
-                    if its not in our database we hope for your understanding
-                  </li>
-                  <li className="pb-2">
-                    This is from public API{" "}
-                    <span className="text-blue-400 tracking-widest cursor-pointer">
-                      (
-                      <NavLink
-                        to={`https://www.weatherapi.com/`}
-                        target="_blank"
-                      >
-                        weatherapi.com
-                      </NavLink>
-                      )
-                    </span>
-                    you can follow link above for details
-                  </li>
-                  <li className="pb-2">Thank you for your understanding</li>
-                </ul>
-              </div>
+                  </div>
+
+                  <p className="mt-3 text-sm opacity-50">
+                    Updated at {currentWeather.last_updated}
+                  </p>
+                </>
+              )}
             </div>
+          </article>
+
+          {/* Details and guide */}
+          <div className="grid gap-6">
+            <section className="border p-5 md:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+                Current details
+              </p>
+
+              <h2 className="mt-3 text-2xl font-semibold">
+                Weather information
+              </h2>
+
+              <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+                <WeatherSmallCard
+                  title={
+                    currentWeather ? `${currentWeather.wind_kph} km/h` : "--"
+                  }
+                  details="wind speed"
+                />
+
+                <WeatherSmallCard
+                  title={currentWeather ? `${currentWeather.humidity}%` : "--"}
+                  details="humidity"
+                />
+
+                <WeatherSmallCard
+                  title={currentWeather ? currentWeather.uv : "--"}
+                  details="UV index"
+                />
+
+                <WeatherSmallCard
+                  title={currentWeather ? `${currentWeather.vis_km} km` : "--"}
+                  details="visibility"
+                />
+              </div>
+            </section>
+
+            <section className="border p-5 md:p-8">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+                How it works
+              </p>
+
+              <h2 className="mt-3 text-2xl font-semibold">
+                A small API-driven project
+              </h2>
+
+              <ol className="mt-5 list-inside list-decimal space-y-3 text-sm leading-6 opacity-70">
+                <li>Enter a city or location in the search field.</li>
+                <li>The app requests the latest data from WeatherAPI.</li>
+                <li>
+                  The interface displays loading, success, and error states.
+                </li>
+                <li>Search again to compare another location.</li>
+              </ol>
+            </section>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="pt-25 border-x">
-        <Footer />
-      </div>
+      <Footer />
     </main>
   );
 };
