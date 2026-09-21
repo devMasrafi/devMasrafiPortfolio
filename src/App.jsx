@@ -1,5 +1,4 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
-import Nav from "./components/navigation/Nav";
 import Home from "./pages/webPages/Home";
 import About from "./pages/webPages/About";
 import Contact from "./pages/webPages/Contact";
@@ -52,12 +51,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <RouterProvider router={router}>
-      <Nav />
-      <Outlet />
-    </RouterProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

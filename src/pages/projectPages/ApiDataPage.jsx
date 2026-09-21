@@ -28,10 +28,7 @@ const ApiDataPage = () => {
 
   const totalPages = Math.ceil(filteredData.length / ITEMS_PER_PAGE);
 
-  const safeCurrentPage = Math.min(
-    currentPage,
-    Math.max(totalPages, 1),
-  );
+  const safeCurrentPage = Math.min(currentPage, Math.max(totalPages, 1));
 
   const firstItemIndex = (safeCurrentPage - 1) * ITEMS_PER_PAGE;
 
@@ -42,7 +39,8 @@ const ApiDataPage = () => {
 
   const scrollToTop = () => {
     window.scrollTo({
-      top: 250,
+      top: 0,
+      left: 0,
       behavior: "smooth",
     });
   };
@@ -127,9 +125,7 @@ const ApiDataPage = () => {
           </div>
 
           <label className="w-full md:max-w-sm">
-            <span className="mb-2 block text-sm font-medium">
-              Search posts
-            </span>
+            <span className="mb-2 block text-sm font-medium">Search posts</span>
 
             <input
               type="search"
@@ -162,9 +158,7 @@ const ApiDataPage = () => {
             <div className="py-12 text-center">
               <p className="text-lg font-semibold">No posts found.</p>
 
-              <p className="mt-2 opacity-60">
-                Try a different search term.
-              </p>
+              <p className="mt-2 opacity-60">Try a different search term.</p>
             </div>
           )}
 
