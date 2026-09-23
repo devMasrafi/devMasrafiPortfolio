@@ -33,7 +33,6 @@ I also have previous WordPress experience and working knowledge of Angular. My d
 - Responsive mobile, tablet, and desktop layouts
 - Route-based navigation
 - Scroll reset when changing pages
-- Web3Forms contact submission
 - Reusable React components
 
 ## Routes
@@ -91,7 +90,7 @@ An API data browser using JSONPlaceholder with:
 
 The portfolio presents professional frontend and WordPress experience separately from starter projects.
 
-Professional experience includes:
+## Professional experience includes:
 
 - Responsive frontend interface development
 - WordPress website development
