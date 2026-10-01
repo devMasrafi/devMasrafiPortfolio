@@ -21,7 +21,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/masrafi-mondol/",
+    href: "https://www.linkedin.com/in/devmasrafi/",
     icon: FaLinkedin,
   },
   {
@@ -42,7 +42,7 @@ const Footer = ({ className = "" }) => {
   return (
     <footer className={`w-full ${className}`}>
       <div className="border-b px-5 py-10 md:px-8 md:py-14 lg:px-10 lg:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr] md:gap-8">
+        <div className="flex flex-col gap-10 md:flex-row md:justify-around md:gap-8">
           {/* Brand */}
           <div>
             <NavLink to="/" className="inline-block">

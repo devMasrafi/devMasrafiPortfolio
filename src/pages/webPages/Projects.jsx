@@ -20,7 +20,7 @@ const professionalWork = [
     link: "",
   },
   {
-    period: "AUG 2026 - ONGOING",
+    period: "JUL 2026 - ONGOING",
     company: "Pixel Boost IT",
     role: "Web Developer",
     description:
@@ -61,7 +61,7 @@ const Projects = () => {
     <main className="mx-auto w-full max-w-7xl">
       {/* Page introduction */}
       <section className="border-x border-b px-5 py-14 md:px-10 md:py-20 lg:px-20 lg:py-24">
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end md:gap-12 lg:gap-20">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:gap-12 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Portfolio work
@@ -103,7 +103,7 @@ const Projects = () => {
           {professionalWork.map((work) => (
             <article
               key={`${work.company}-${work.period}`}
-              className="border-l-2 border-blue-400 pl-5 md:grid md:grid-cols-[190px_1fr] md:gap-8 md:border-l-0 md:border-t md:pl-0 md:pt-6 lg:grid-cols-[230px_1fr] lg:gap-12"
+              className="border-l-2 border-blue-400 pl-5 md:flex md:gap-8 md:border-l-0 md:border-t md:pl-0 md:pt-6 lg:gap-12"
             >
               <div className="mb-4 md:mb-0">
                 <p className="text-sm font-semibold text-blue-400">
@@ -170,22 +170,24 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-wrap gap-6">
           {starterProjects.map((project) => (
-            <ProjectCard
-              key={project.projectLink}
-              image={project.image}
-              title={project.title}
-              para={project.para}
-              link={project.projectLink}
-            />
+            <div className="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
+              <ProjectCard
+                key={project.projectLink}
+                image={project.image}
+                title={project.title}
+                para={project.para}
+                link={project.projectLink}
+              />
+            </div>
           ))}
         </div>
       </section>
 
       {/* Growth statement */}
       <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-12 lg:gap-20">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:gap-12 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Continuous growth

@@ -61,7 +61,7 @@ const WeatherApp = () => {
 
       {/* Weather workspace */}
       <section className="border-x border-b px-5 py-10 md:px-10 md:py-14 lg:px-20 lg:py-20">
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div className="flex flex-col gap-6 lg:flex-row">
           {/* Main weather card */}
           <article className="border p-5 md:p-8">
             <form
@@ -159,7 +159,7 @@ const WeatherApp = () => {
           </article>
 
           {/* Details and guide */}
-          <div className="grid gap-6">
+          <div className="flex flex-col gap-6">
             <section className="border p-5 md:p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
                 Current details
@@ -169,7 +169,7 @@ const WeatherApp = () => {
                 Weather information
               </h2>
 
-              <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <WeatherSmallCard
                   title={
                     currentWeather ? `${currentWeather.wind_kph} km/h` : "--"

@@ -160,11 +160,11 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 flex flex-wrap gap-5">
           {projects.map((project) => (
             <article
               key={project.title}
-              className="flex flex-col border p-5 transition hover:-translate-y-1"
+              className="flex flex-col border p-5 transition hover:-translate-y-1 w-full md:w-[calc(33.333%-0.84rem)]"
             >
               <div className="flex-1">
                 <p className="text-xs font-semibold uppercase tracking-wider text-blue-400">
@@ -203,7 +203,7 @@ const Home = () => {
 
       {/* Primary stack */}
       <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12 lg:gap-20">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-12 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Primary stack
@@ -226,7 +226,7 @@ const Home = () => {
 
       {/* Additional experience */}
       <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12 lg:gap-20">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-12 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Additional experience
@@ -298,7 +298,7 @@ const Home = () => {
 
       {/* Contact CTA */}
       <section className="border-x border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-12">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Start a conversation

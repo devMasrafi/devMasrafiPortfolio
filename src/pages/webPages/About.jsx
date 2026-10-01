@@ -16,7 +16,7 @@ const experience = [
     technologies: ["WordPress", "Figma", "Ae", "Canva", "Illustrator"],
   },
   {
-    period: "AUG 2026 -ONGOING",
+    period: "JUL 2026 -ONGOING",
     company: "Pixel Boost IT",
     role: "WEB Developer",
     description:
@@ -85,7 +85,7 @@ const About = () => {
     <main className="mx-auto w-full max-w-7xl border-x">
       {/* Introduction */}
       <section className="border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-24">
-        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12 lg:gap-20">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-12 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               About me
@@ -132,7 +132,7 @@ const About = () => {
 
       {/* Professional focus */}
       <section className="border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12 lg:gap-20">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-12 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Professional focus
@@ -170,9 +170,9 @@ const About = () => {
           </h2>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-wrap gap-4">
           {strengths.map((strength) => (
-            <article key={strength.title} className="border p-5">
+            <article key={strength.title} className="w-full border p-5 sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
               <h3 className="text-lg font-semibold">{strength.title}</h3>
 
               <p className="mt-3 text-sm leading-6 opacity-70">
@@ -204,7 +204,7 @@ const About = () => {
           {experience.map((item) => (
             <article
               key={`${item.company}-${item.role}-${item.period}`}
-              className="border-l-2 border-blue-400 pl-5 md:grid md:grid-cols-[180px_1fr] md:gap-8 md:border-l-0 md:border-t md:pl-0 md:pt-6 lg:grid-cols-[220px_1fr] lg:gap-12"
+              className="border-l-2 border-blue-400 pl-5 md:flex md:gap-8 md:border-l-0 md:border-t md:pl-0 md:pt-6 lg:gap-12"
             >
               <div className="mb-4 md:mb-0">
                 <p className="text-sm font-semibold text-blue-400">
@@ -250,7 +250,7 @@ const About = () => {
           </h2>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="flex flex-col gap-8 md:flex-row">
           {Object.entries(skills).map(([category, categorySkills]) => (
             <div key={category}>
               <h3 className="text-xl font-semibold">{category}</h3>
@@ -269,7 +269,7 @@ const About = () => {
 
       {/* Education */}
       <section className="border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:gap-12 lg:gap-20">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-12 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Education

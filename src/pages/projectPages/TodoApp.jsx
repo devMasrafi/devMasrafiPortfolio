@@ -105,7 +105,7 @@ const TodoApp = () => {
 
       {/* Workspace */}
       <section className="border-b px-5 py-10 md:px-10 md:py-14 lg:px-20 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-12">
+        <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
           {/* Form */}
           <section className="border p-5 md:p-8">
             <button

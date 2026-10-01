@@ -37,8 +37,8 @@ const Contact = () => {
     <main className="mx-auto min-h-screen w-full max-w-7xl border-x">
       {/* Hero */}
       <section className="border-b px-5 py-14 md:px-10 md:py-20 lg:px-20 lg:py-28">
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-end md:gap-12 lg:gap-20">
-          <div>
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:gap-12 lg:gap-20">
+          <div className="md:w-[40%] md:shrink-0">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Get in touch
             </p>
@@ -48,7 +48,7 @@ const Contact = () => {
             </h1>
           </div>
 
-          <div className="max-w-2xl">
+          <div className="max-w-2xl md:flex-1">
             <p className="text-base leading-7 opacity-70 md:text-lg">
               I am open to junior MERN stack, frontend developer, internship,
               freelance, and collaborative product opportunities.
@@ -85,8 +85,8 @@ const Contact = () => {
 
       {/* Direct email */}
       <section className="border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-12 lg:gap-20">
-          <div>
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12 lg:gap-20">
+          <div className="md:w-[40%] md:shrink-0">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Direct contact
             </p>
@@ -96,7 +96,7 @@ const Contact = () => {
             </h2>
           </div>
 
-          <div>
+          <div className="md:flex-1">
             <p className="leading-7 opacity-70">
               Email is the best way to reach me about a job opportunity,
               collaboration, or project discussion.
@@ -125,7 +125,7 @@ const Contact = () => {
           </h2>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-wrap gap-4">
           {contactLinks.map((contact) => {
             const Icon = contact.icon;
 
@@ -134,21 +134,12 @@ const Contact = () => {
                 key={contact.title}
                 href={contact.href}
                 target={contact.href.startsWith("http") ? "_blank" : undefined}
-                rel={
-                  contact.href.startsWith("http")
-                    ? "noreferrer"
-                    : undefined
-                }
-                className="group border p-5 transition hover:-translate-y-1 hover:border-blue-400"
+                rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
+                className="group w-full border p-5 transition hover:-translate-y-1 hover:border-blue-400 sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]"
               >
-                <Icon
-                  className="text-2xl text-blue-400"
-                  aria-hidden="true"
-                />
+                <Icon className="text-2xl text-blue-400" aria-hidden="true" />
 
-                <h3 className="mt-5 text-xl font-semibold">
-                  {contact.title}
-                </h3>
+                <h3 className="mt-5 text-xl font-semibold">{contact.title}</h3>
 
                 <p className="mt-2 wrap-break-words font-medium">
                   {contact.value}
@@ -169,8 +160,8 @@ const Contact = () => {
 
       {/* Final CTA */}
       <section className="border-b px-5 py-12 md:px-10 md:py-16 lg:px-20 lg:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-12 lg:gap-20">
-          <div>
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12 lg:gap-20">
+          <div className="md:w-[40%] md:shrink-0">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
               Start a project
             </p>
@@ -180,7 +171,7 @@ const Contact = () => {
             </h2>
           </div>
 
-          <div>
+          <div className="md:flex-1">
             <p className="leading-7 opacity-70">
               Send me a message with a little information about the role,
               project, or collaboration. I will get back to you as soon as I

@@ -23,20 +23,12 @@ const Subcription = () => {
           value="8682f14b-96d9-47dd-9ebb-5fae1133fa46"
         />
 
-        <input
-          type="hidden"
-          name="subject"
-          value="New portfolio contact"
-        />
+        <input type="hidden" name="subject" value="New portfolio contact" />
 
-        <input
-          type="hidden"
-          name="from_name"
-          value="Portfolio website"
-        />
+        <input type="hidden" name="from_name" value="Portfolio website" />
 
-        <div className="grid gap-3 md:grid-cols-2">
-          <label className="flex flex-col gap-1 text-sm">
+        <div className="flex flex-col gap-3 md:flex-row">
+          <label className="flex min-w-0 flex-col gap-1 text-sm md:flex-1">
             Name
             <input
               type="text"
